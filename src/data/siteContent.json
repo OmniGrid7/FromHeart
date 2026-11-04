@@ -1,0 +1,194 @@
+{
+  "featuredGift": {
+    "tag": "Best Seller",
+    "title": "Executive Welcome Box",
+    "items": [
+      "Premium notebook",
+      "Branded tumbler",
+      "Custom packaging"
+    ],
+    "price": "From ₹1,999"
+  },
+  "giftingCategories": [
+    {
+      "title": "Welcome Kits",
+      "description": "Thoughtful onboarding gifting for new hires, clients and partners with premium packaging and tailored choices.",
+      "icon": "🎁"
+    },
+    {
+      "title": "Custom Branding",
+      "description": "Logo engraving, printing, embossing and packaging that makes every gift feel premium and personal.",
+      "icon": "✦"
+    },
+    {
+      "title": "Corporate Events",
+      "description": "Memorable giveaways and curated merchandise for launches, conferences, festivals and milestones.",
+      "icon": "📦"
+    },
+    {
+      "title": "Executive Gifts",
+      "description": "High-impact, practical gifting for leadership moments, stakeholder appreciation and year-end celebrations.",
+      "icon": "💼"
+    }
+  ],
+  "features": [
+    "Fully customised with your brand identity",
+    "Premium packaging included for every order",
+    "Mix and match options across budgets",
+    "Pan-India delivery with quick fulfilment"
+  ],
+  "processSteps": [
+    {
+      "number": "01",
+      "title": "Share Your Brief",
+      "description": "Tell us your quantity, budget and occasion."
+    },
+    {
+      "number": "02",
+      "title": "Get a Catalogue",
+      "description": "Receive curated selections in just a few hours."
+    },
+    {
+      "number": "03",
+      "title": "Approve Mockup",
+      "description": "Review branding before production begins."
+    },
+    {
+      "number": "04",
+      "title": "We Deliver",
+      "description": "Custom packed items shipped across India on time."
+    }
+  ],
+  "gallery": [
+    {
+      "label": "Premium kits",
+      "tone": "warm"
+    },
+    {
+      "label": "Brand-ready sets",
+      "tone": "cool"
+    },
+    {
+      "label": "Executive gifting",
+      "tone": "warm-alt"
+    }
+  ],
+  "giftIdeaGroups": [
+    {
+      "title": "Bags & Carriers",
+      "items": [
+        {
+          "title": "Tote Bags",
+          "slug": "tote-bags",
+          "description": "Reusable, versatile totes that put your brand in hand at events, in the office and on the go.",
+          "ideas": ["Cotton totes", "Canvas shopper bags", "Jute carry bags"]
+        },
+        {
+          "title": "Laptop Bags",
+          "slug": "laptop-bags",
+          "description": "Professional laptop bags that protect devices while carrying your brand into every meeting.",
+          "ideas": ["Padded laptop sleeves", "Work-ready laptop bags", "Tech organiser bags"]
+        },
+        {
+          "title": "Backpacks",
+          "slug": "backpacks",
+          "description": "Comfortable, practical backpacks for employee welcome kits, conferences and everyday commutes.",
+          "ideas": ["Business backpacks", "Travel backpacks", "Compact daypacks"]
+        },
+        {
+          "title": "Custom Bags",
+          "slug": "custom-bags",
+          "description": "Made-to-order bags with your choice of material, colour, finish and branding.",
+          "ideas": ["Branded duffel bags", "Drawstring bags", "Custom conference bags"]
+        }
+      ]
+    },
+    {
+      "title": "Drinkware Collection",
+      "items": [
+        {
+          "title": "Tumblers & Sippers",
+          "slug": "tumblers-sippers",
+          "description": "Everyday drinkware with useful details and custom branding for desks, commutes and events.",
+          "ideas": ["Insulated tumblers", "Travel sippers", "Reusable coffee cups"]
+        },
+        {
+          "title": "Travel Mugs",
+          "slug": "travel-mugs",
+          "description": "A considered companion for the commute, with practical lids and a polished branded finish.",
+          "ideas": ["Insulated travel mugs", "Leak-resistant mugs", "Ceramic travel cups"]
+        },
+        {
+          "title": "Steel Bottles",
+          "slug": "steel-bottles",
+          "description": "Durable reusable bottles for employee kits, event gifting and daily hydration.",
+          "ideas": ["Stainless steel bottles", "Double-wall bottles", "Branded sports bottles"]
+        },
+        {
+          "title": "Thermosteel Drinkware",
+          "slug": "thermosteel-drinkware",
+          "description": "Premium temperature-retaining drinkware that makes a useful, lasting corporate gift.",
+          "ideas": ["Thermosteel flasks", "Vacuum bottles", "Insulated bottle sets"]
+        }
+      ]
+    },
+    {
+      "title": "Work & Stationery",
+      "items": [
+        {
+          "title": "Diaries & Planners",
+          "slug": "diaries-planners",
+          "description": "Help teams plan, organise and capture ideas with thoughtfully finished branded stationery.",
+          "ideas": ["Dated planners", "Undated diaries", "Desk planning sets"]
+        },
+        {
+          "title": "Notebooks",
+          "slug": "notebooks",
+          "description": "A timeless gift for work and ideas, personalised with your logo, colours or a custom cover.",
+          "ideas": ["Hardcover notebooks", "Recycled-paper journals", "Notebook gift sets"]
+        },
+        {
+          "title": "Pens",
+          "slug": "pens",
+          "description": "Useful branded writing instruments, from everyday event giveaways to premium gift sets.",
+          "ideas": ["Metal pens", "Rollerball pens", "Pen and notebook sets"]
+        },
+        {
+          "title": "Welcome Kits",
+          "slug": "welcome-kits",
+          "description": "Make day one feel special with a coordinated kit of useful essentials and personal touches.",
+          "ideas": ["New-hire essentials", "Branded stationery kits", "Curated onboarding boxes"]
+        },
+        {
+          "title": "Mouse Pads",
+          "slug": "mouse-pads",
+          "description": "A practical desk accessory that keeps your brand present throughout the workday.",
+          "ideas": ["Custom printed pads", "Wrist-rest mouse pads", "Desk mat sets"]
+        }
+      ]
+    },
+    {
+      "title": "Sustainable Gifts",
+      "items": [
+        {
+          "title": "Desk Organizers",
+          "slug": "desk-organizers",
+          "description": "Keep workspaces tidy with useful organisers made from thoughtful materials and finishes.",
+          "ideas": ["Bamboo desk caddies", "Wooden stationery holders", "Recycled-felt organisers"]
+        },
+        {
+          "title": "Bamboo Drinkware",
+          "slug": "bamboo-drinkware",
+          "description": "Reusable drinkware options with natural bamboo details for a more considered gift.",
+          "ideas": ["Bamboo-lid tumblers", "Bamboo bottle sleeves", "Reusable cup sets"]
+        },
+        {
+          "title": "Eco Gift Hampers",
+          "slug": "eco-gift-hampers",
+          "description": "Curated gifts that bring together reusable, responsibly chosen and beautifully presented products.",
+          "ideas": ["Sustainable desk hampers", "Reusable daily essentials", "Eco welcome boxes"]
+        }
+      ]
+    }
+  ]
+}
