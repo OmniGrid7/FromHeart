@@ -1,34 +1,71 @@
 {
   "featuredGift": {
-    "tag": "Best Seller",
-    "title": "Executive Welcome Box",
+    "tag": "Welcome gift",
+    "title": "Exclusive Welcome Gift",
+    "image": "/exclusive-welcome-gift.png",
+    "alt": "Branded team welcome box with a bottle, travel mug, notebook and pen",
     "items": [
-      "Premium notebook",
-      "Branded tumbler",
-      "Custom packaging"
+      "Branded bottle and travel mug",
+      "Notebook, pen and keychain",
+      "Custom welcome packaging"
     ],
     "price": "From ₹1,999"
   },
   "giftingCategories": [
     {
       "title": "Welcome Kits",
+      "slug": "welcome-kits",
       "description": "Thoughtful onboarding gifting for new hires, clients and partners with premium packaging and tailored choices.",
+      "offerings": [
+        "New-joiner welcome boxes",
+        "Branded notebooks and drinkware",
+        "Custom packaging and welcome notes"
+      ],
       "icon": "🎁"
     },
     {
       "title": "Custom Branding",
+      "slug": "custom-branding",
       "description": "Logo engraving, printing, embossing and packaging that makes every gift feel premium and personal.",
+      "offerings": [
+        "Logo printing and engraving",
+        "Branded ribbons, sleeves and boxes",
+        "Custom inserts and personal notes"
+      ],
       "icon": "✦"
     },
     {
       "title": "Corporate Events",
+      "slug": "corporate-events",
       "description": "Memorable giveaways and curated merchandise for launches, conferences, festivals and milestones.",
+      "offerings": [
+        "Conference and launch giveaways",
+        "Branded event merchandise",
+        "Curated gifts for company milestones"
+      ],
       "icon": "📦"
     },
     {
       "title": "Executive Gifts",
+      "slug": "executive-gifts",
       "description": "High-impact, practical gifting for leadership moments, stakeholder appreciation and year-end celebrations.",
+      "offerings": [
+        "Premium leadership gift sets",
+        "Client and stakeholder appreciation",
+        "Thoughtful year-end gifts"
+      ],
       "icon": "💼"
+    },
+    {
+      "title": "University Events",
+      "slug": "university-events",
+      "description": "Branded gifting for conferences, startup conclaves, TEDx, alumni connects, fresher parties and convocation ceremonies.",
+      "offerings": [
+        "Conference and startup conclave kits",
+        "TEDx, alumni connect and fresher party gifts",
+        "Convocation keepsakes and branded merchandise"
+      ],
+      "icon": "🎓"
     }
   ],
   "features": [
@@ -37,6 +74,10 @@
     "Mix and match options across budgets",
     "Pan-India delivery with quick fulfilment"
   ],
+  "welcomeKitImage": {
+    "src": "/welcome-kits.png",
+    "alt": "Personalised welcome gift box with drinkware, a notebook, pen and plant"
+  },
   "processSteps": [
     {
       "number": "01",
@@ -62,14 +103,20 @@
   "gallery": [
     {
       "label": "Premium kits",
+      "image": "/premium-kits.png",
+      "alt": "Premium skincare gift set with gold detailing",
       "tone": "warm"
     },
     {
       "label": "Brand-ready sets",
+      "image": "/brand-ready-sets.png",
+      "alt": "Executive stationery gift set in a presentation box",
       "tone": "cool"
     },
     {
       "label": "Executive gifting",
+      "image": "/executive-gifting.png",
+      "alt": "Luxury gift boxes finished with ribbons",
       "tone": "warm-alt"
     }
   ],

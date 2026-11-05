@@ -6,41 +6,10 @@ const giftIdeaItems = giftIdeaGroups.flatMap((group) =>
   group.items.map((item) => ({ ...item, group: group.title }))
 )
 
-const giftingCategories = [
-  {
-    title: 'Welcome Kits',
-    description: 'Thoughtful onboarding gifting for new hires, clients and partners with premium packaging and tailored choices.',
-    icon: '🎁'
-  },
-  {
-    title: 'Custom Branding',
-    description: 'Logo engraving, printing, embossing and packaging that makes every gift feel premium and personal.',
-    icon: '✦'
-  },
-  {
-    title: 'Corporate Events',
-    description: 'Memorable giveaways and curated merchandise for launches, conferences, festivals and milestones.',
-    icon: '📦'
-  },
-  {
-    title: 'Executive Gifts',
-    description: 'High-impact, practical gifting for leadership moments, stakeholder appreciation and year-end celebrations.',
-    icon: '💼'
-  }
-]
-
-const features = [
-  'Fully customised with your brand identity',
-  'Premium packaging included for every order',
-  'Mix and match options across budgets',
-  'Pan-India delivery with quick fulfilment'
-]
-
-const gallery = [
-  { label: 'Premium kits', tone: 'warm' },
-  { label: 'Brand-ready sets', tone: 'cool' },
-  { label: 'Executive gifting', tone: 'warm-alt' }
-]
+const giftingCategories = siteContent.giftingCategories
+const featuredGift = siteContent.featuredGift
+const features = siteContent.features
+const gallery = siteContent.gallery
 
 function HeartLogo() {
   return (
@@ -105,23 +74,129 @@ function GiftIdeaPage({ item }) {
   )
 }
 
+function ServicePage({ service }) {
+  return (
+    <section className="gift-page service-page">
+      <div className="gift-breadcrumb">
+        <a href="#home">Home</a>
+        <span aria-hidden="true">/</span>
+        <a href="#solutions">What we do</a>
+        <span aria-hidden="true">/</span>
+        <span>{service.title}</span>
+      </div>
+
+      <div className="gift-page-hero">
+        <p className="eyebrow">FromHeart services</p>
+        <h1>{service.title}</h1>
+        <p>{service.description}</p>
+        <a className="primary-btn" href="#contact">
+          Plan {service.title.toLowerCase()}
+        </a>
+      </div>
+
+      <div className="gift-page-content">
+        <div className="section-heading">
+          <p className="eyebrow">Made for your occasion</p>
+          <h2>Thoughtful details, made yours.</h2>
+          <p className="gift-page-intro">
+            Choose a starting point and we’ll tailor the products, branding and presentation to fit your brief.
+          </p>
+        </div>
+        <div className="service-offerings">
+          {service.offerings.map((offering, index) => (
+            <article className="service-offering reveal" key={offering}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{offering}</h3>
+              <p>Personalised to your brand, audience and budget.</p>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div className="gift-page-cta">
+        <div>
+          <p className="eyebrow">Let’s make it memorable</p>
+          <h2>Have an occasion in mind?</h2>
+          <p>Share your quantity, timeline and budget. We’ll help put together the right gifts.</p>
+        </div>
+        <a className="primary-btn" href="#contact">Request a custom quote</a>
+      </div>
+    </section>
+  )
+}
+
 function App() {
   const [giftSlug, setGiftSlug] = useState(() => {
     const match = window.location.hash.match(/^#\/gift\/([^/?#]+)/)
     return match ? decodeURIComponent(match[1]) : null
   })
+  const [serviceSlug, setServiceSlug] = useState(() => {
+    const match = window.location.hash.match(/^#\/service\/([^/?#]+)/)
+    return match ? decodeURIComponent(match[1]) : null
+  })
 
   useEffect(() => {
     const syncRoute = () => {
-      const match = window.location.hash.match(/^#\/gift\/([^/?#]+)/)
-      setGiftSlug(match ? decodeURIComponent(match[1]) : null)
+      const giftMatch = window.location.hash.match(/^#\/gift\/([^/?#]+)/)
+      const serviceMatch = window.location.hash.match(/^#\/service\/([^/?#]+)/)
+      setGiftSlug(giftMatch ? decodeURIComponent(giftMatch[1]) : null)
+      setServiceSlug(serviceMatch ? decodeURIComponent(serviceMatch[1]) : null)
+      if (giftMatch || serviceMatch) window.scrollTo(0, 0)
     }
 
     window.addEventListener('hashchange', syncRoute)
     return () => window.removeEventListener('hashchange', syncRoute)
   }, [])
 
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal').forEach((element) => element.classList.add('in'))
+      return
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in')
+          observer.unobserve(entry.target)
+        }
+      })
+    }, { threshold: 0.12 })
+
+    document.querySelectorAll('.reveal').forEach((element, index) => {
+      element.style.transitionDelay = `${(index % 4) * 70}ms`
+      observer.observe(element)
+    })
+
+    return () => observer.disconnect()
+  }, [giftSlug, serviceSlug])
+
+  useEffect(() => {
+    const container = document.getElementById('sparkles')
+    if (!container) return
+    let timer
+    function createSparkle() {
+      const sparkle = document.createElement('div')
+      sparkle.className = 'sparkle'
+      const size = Math.random() * 6 + 4
+      sparkle.style.width = `${size}px`
+      sparkle.style.height = `${size}px`
+      sparkle.style.left = `${Math.random() * 100}%`
+      sparkle.style.bottom = '0px'
+      const duration = Math.random() * 2 + 2
+      sparkle.style.animationDuration = `${duration}s`
+      container.appendChild(sparkle)
+      timer = setTimeout(() => sparkle.remove(), duration * 1000)
+    }
+    const interval = setInterval(createSparkle, 300)
+    return () => {
+      clearInterval(interval)
+      clearTimeout(timer)
+    }
+  }, [])
+
   const currentGift = giftIdeaItems.find((item) => item.slug === giftSlug)
+  const currentService = giftingCategories.find((item) => item.slug === serviceSlug)
 
   return (
     <div className="page-shell">
@@ -165,7 +240,17 @@ function App() {
       </header>
 
       <main>
-        {giftSlug ? (
+        {serviceSlug ? (
+          currentService ? (
+            <ServicePage service={currentService} />
+          ) : (
+            <section className="gift-page not-found">
+              <p className="eyebrow">What we do</p>
+              <h1>We couldn’t find that service.</h1>
+              <a className="primary-btn" href="#home">Back to home</a>
+            </section>
+          )
+        ) : giftSlug ? (
           currentGift ? (
             <GiftIdeaPage item={currentGift} />
           ) : (
@@ -178,8 +263,29 @@ function App() {
         ) : (
           <>
         <section className="hero" id="home">
+          <div className="hero-fireworks" aria-hidden="true">
+            {['firework-left', 'firework-right'].map((burst) => (
+              <span className={`firework-burst ${burst}`} key={burst}>
+                {Array.from({ length: 8 }, (_, index) => (
+                  <i key={index} style={{ '--angle': `${index * 45}deg`, '--delay': `${index * -0.12}s` }} />
+                ))}
+              </span>
+            ))}
+          </div>
+          <div className="hero-lights" aria-hidden="true">
+            {Array.from({ length: 8 }, (_, index) => (
+              <i key={index} style={{ '--delay': `${index * -0.3}s` }} />
+            ))}
+          </div>
+          <span className="floating-lantern lantern-one" aria-hidden="true" />
+          <span className="floating-lantern lantern-two" aria-hidden="true" />
+          <span className="floating-lantern lantern-three" aria-hidden="true" />
           <div className="hero-copy">
-            <p className="eyebrow">Thoughtful gifting, beautifully branded</p>
+            <p className="eyebrow hero-tagline">
+              <span className="tagline-spark tagline-spark-left" aria-hidden="true">✦</span>
+              <span>thoughtful gifting, beautifully branded</span>
+              <span className="tagline-spark tagline-spark-right" aria-hidden="true">✦</span>
+            </p>
             <h1>Gifts that build stronger relationships.</h1>
             <p className="subtext">
               From corporate welcome kits to premium client appreciation gifting, we design memorable experiences that reflect your brand with warmth and care.
@@ -206,18 +312,19 @@ function App() {
             </div>
           </div>
 
-          <div className="showcase-panel" aria-label="Featured gifting packages">
+          <div className="showcase-panel reveal" aria-label="Featured gifting packages">
             <div className="product-card featured">
-              <span className="product-tag">Best Seller</span>
-              <h3>Executive Welcome Box</h3>
+              <span className="product-tag">{featuredGift.tag}</span>
+              <img className="featured-gift-image" src={featuredGift.image} alt={featuredGift.alt} />
+              <h3>{featuredGift.title}</h3>
               <ul>
-                <li>Premium notebook</li>
-                <li>Branded tumbler</li>
-                <li>Custom packaging</li>
+                {featuredGift.items.map((item) => <li key={item}>{item}</li>)}
               </ul>
-              <div className="card-price">From ₹1,999</div>
+              <div className="card-price">{featuredGift.price}</div>
             </div>
           </div>
+
+          <div className="sparkles-container" id="sparkles" />
         </section>
 
         <section className="services" id="solutions">
@@ -228,17 +335,18 @@ function App() {
 
           <div className="cards-grid">
             {giftingCategories.map((item) => (
-              <article className="info-card" key={item.title}>
+              <a className="info-card reveal" href={`#/service/${item.slug}`} key={item.slug}>
                 <div className="icon-wrap">{item.icon}</div>
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
-              </article>
+                <span className="info-card-link">Explore {item.title} <span aria-hidden="true">→</span></span>
+              </a>
             ))}
           </div>
         </section>
 
         <section className="feature-band" id="about">
-          <div className="feature-copy">
+          <div className="feature-copy reveal">
             <p className="eyebrow">Our specialty</p>
             <h2>Welcome kits that create lasting impressions.</h2>
             <p>
@@ -251,11 +359,9 @@ function App() {
             </ul>
           </div>
 
-          <div className="feature-visual" aria-label="Gift box showcase">
+          <div className="feature-visual reveal" aria-label="Gift box showcase">
             <div className="visual-box">
-              <div className="box-line line-a"></div>
-              <div className="box-line line-b"></div>
-              <div className="box-line line-c"></div>
+              <img src={siteContent.welcomeKitImage.src} alt={siteContent.welcomeKitImage.alt} loading="lazy" />
             </div>
           </div>
         </section>
@@ -267,10 +373,10 @@ function App() {
           </div>
 
           <div className="steps-grid">
-            <div className="step-item"><span>01</span><h3>Share Your Brief</h3><p>Tell us your quantity, budget and occasion.</p></div>
-            <div className="step-item"><span>02</span><h3>Get a Catalogue</h3><p>Receive curated selections in just a few hours.</p></div>
-            <div className="step-item"><span>03</span><h3>Approve Mockup</h3><p>Review branding before production begins.</p></div>
-            <div className="step-item"><span>04</span><h3>We Deliver</h3><p>Custom packed items shipped across India on time.</p></div>
+            <div className="step-item reveal"><span>01</span><h3>Share Your Brief</h3><p>Tell us your quantity, budget and occasion.</p></div>
+            <div className="step-item reveal"><span>02</span><h3>Get a Catalogue</h3><p>Receive curated selections in just a few hours.</p></div>
+            <div className="step-item reveal"><span>03</span><h3>Approve Mockup</h3><p>Review branding before production begins.</p></div>
+            <div className="step-item reveal"><span>04</span><h3>We Deliver</h3><p>Custom packed items shipped across India on time.</p></div>
           </div>
         </section>
 
@@ -281,13 +387,10 @@ function App() {
           </div>
 
           <div className="portfolio-grid">
-            {gallery.map((item, index) => (
-              <div className={`portfolio-card ${item.tone}`} key={item.label}>
+            {gallery.map((item) => (
+              <div className={`portfolio-card ${item.tone} reveal`} key={item.label}>
                 <div className="portfolio-shape">
-                  <div className="mini-box"></div>
-                  <div className="mini-box"></div>
-                  <div className="mini-box"></div>
-                  <span>{index + 1}</span>
+                  <img src={item.image} alt={item.alt} loading="lazy" />
                 </div>
                 <p>{item.label}</p>
               </div>
