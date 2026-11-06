@@ -10,6 +10,52 @@ const giftingCategories = siteContent.giftingCategories
 const featuredGift = siteContent.featuredGift
 const features = siteContent.features
 const gallery = siteContent.gallery
+const whatsappUrl = (message) =>
+  `https://wa.me/${siteContent.whatsappNumber}?text=${encodeURIComponent(message)}`
+const productMessage = (item, request) => {
+  const details = item.details?.map((detail) => `• ${detail}`).join('\n')
+
+  return [
+    `Hello FromHeart! I'd like to ${request} ${item.title}.`,
+    item.description,
+    details && `Product details:\n${details}`,
+    item.price && `Price: ${item.price}`,
+    'Please share availability and help me with the next steps.',
+  ].filter(Boolean).join('\n\n')
+}
+
+function ProductWhatsAppLink({ item, request, className, children }) {
+  return (
+    <a
+      className={className}
+      href={whatsappUrl(productMessage(item, request))}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {children}
+    </a>
+  )
+}
+
+const giftCollections = [
+  {
+    ...featuredGift,
+    image: featuredGift.image,
+    eyebrow: 'Welcome gifts',
+    details: featuredGift.items,
+  },
+  {
+    ...siteContent.welcomeKitImage,
+    image: siteContent.welcomeKitImage.src,
+    label: siteContent.welcomeKitImage.title,
+    eyebrow: 'Thoughtful onboarding',
+  },
+  ...gallery.map((item) => ({
+    ...item,
+    title: item.label,
+    eyebrow: 'From our collection',
+  })),
+]
 
 function HeartLogo() {
   return (
@@ -36,7 +82,14 @@ function GiftIdeaPage({ item }) {
         <p className="eyebrow">{item.group}</p>
         <h1>{item.title}</h1>
         <p>{item.description}</p>
-        <a className="primary-btn" href="#contact">Enquire about {item.title}</a>
+        <a
+          className="primary-btn"
+          href={whatsappUrl(`Hello FromHeart! I'm interested in ${item.title}. Please share the available options and pricing.`)}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Enquire about {item.title}
+        </a>
       </div>
 
       <div className="gift-page-content">
@@ -56,7 +109,13 @@ function GiftIdeaPage({ item }) {
               </div>
               <h3>{idea}</h3>
               <p>Customisable with your logo and presented to suit your brand.</p>
-              <a href="#contact">Ask us about this <span aria-hidden="true">→</span></a>
+              <a
+                href={whatsappUrl(`Hello FromHeart! I'd like to know more about ${idea} for ${item.title}. Please share the options and pricing.`)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Ask us about this <span aria-hidden="true">→</span>
+              </a>
             </article>
           ))}
         </div>
@@ -68,7 +127,74 @@ function GiftIdeaPage({ item }) {
           <h2>Need help choosing?</h2>
           <p>Tell us the occasion, quantity and budget. We’ll curate options for you.</p>
         </div>
-        <a className="primary-btn" href="#contact">Request a custom quote</a>
+        <a
+          className="primary-btn"
+          href={whatsappUrl(`Hello FromHeart! I'd like a custom quote for ${item.title}. Please help me choose options for my quantity, budget, and occasion.`)}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Request a custom quote
+        </a>
+      </div>
+    </section>
+  )
+}
+
+function GiftCollectionPage({ item }) {
+  return (
+    <section className="gift-page collection-page">
+      <div className="gift-breadcrumb">
+        <a href="#home">Home</a>
+        <span aria-hidden="true">/</span>
+        <a href="#process">Our work</a>
+        <span aria-hidden="true">/</span>
+        <span>{item.title}</span>
+      </div>
+
+      <div className="collection-hero">
+        <div className="collection-image-wrap">
+          <img src={item.image} alt={item.alt} />
+        </div>
+        <div className="collection-copy">
+          <p className="eyebrow">{item.eyebrow}</p>
+          <h1>{item.title}</h1>
+          <p className="collection-description">{item.description}</p>
+          {item.price && <p className="collection-price">{item.price}</p>}
+          <ProductWhatsAppLink className="primary-btn" item={item} request="learn more about">
+            Enquire about {item.title}
+          </ProductWhatsAppLink>
+        </div>
+      </div>
+
+      <div className="gift-page-content collection-details">
+        <div className="section-heading">
+          <p className="eyebrow">The details</p>
+          <h2>Thoughtful from the first look.</h2>
+          <p className="gift-page-intro">{item.description}</p>
+        </div>
+        <ul className="collection-detail-list">
+          {item.details.map((detail) => (
+            <li key={detail}>{detail}</li>
+          ))}
+        </ul>
+        <div className="collection-note">
+          <h3>Made to feel like your brand</h3>
+          <p>
+            Choose the products, colours, branding and packaging that suit your occasion and budget.
+            Share your quantity and timeline, and we’ll help curate the right set.
+          </p>
+        </div>
+      </div>
+
+      <div className="gift-page-cta">
+        <div>
+          <p className="eyebrow">Make it yours</p>
+          <h2>Looking for a custom set?</h2>
+          <p>Tell us what you have in mind and we’ll prepare options for your brief.</p>
+        </div>
+        <ProductWhatsAppLink className="primary-btn" item={item} request="get a custom quote for">
+          Request a custom quote
+        </ProductWhatsAppLink>
       </div>
     </section>
   )
@@ -89,7 +215,12 @@ function ServicePage({ service }) {
         <p className="eyebrow">FromHeart services</p>
         <h1>{service.title}</h1>
         <p>{service.description}</p>
-        <a className="primary-btn" href="#contact">
+        <a
+          className="primary-btn"
+          href={whatsappUrl(`Hello FromHeart! I'd like to plan ${service.title.toLowerCase()}. Please share suitable gifting options and pricing.`)}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Plan {service.title.toLowerCase()}
         </a>
       </div>
@@ -119,7 +250,14 @@ function ServicePage({ service }) {
           <h2>Have an occasion in mind?</h2>
           <p>Share your quantity, timeline and budget. We’ll help put together the right gifts.</p>
         </div>
-        <a className="primary-btn" href="#contact">Request a custom quote</a>
+        <a
+          className="primary-btn"
+          href={whatsappUrl(`Hello FromHeart! I'd like a custom quote for ${service.title}. Please help me with options for my quantity, budget, and timeline.`)}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Request a custom quote
+        </a>
       </div>
     </section>
   )
@@ -134,14 +272,20 @@ function App() {
     const match = window.location.hash.match(/^#\/service\/([^/?#]+)/)
     return match ? decodeURIComponent(match[1]) : null
   })
+  const [collectionSlug, setCollectionSlug] = useState(() => {
+    const match = window.location.hash.match(/^#\/collection\/([^/?#]+)/)
+    return match ? decodeURIComponent(match[1]) : null
+  })
 
   useEffect(() => {
     const syncRoute = () => {
       const giftMatch = window.location.hash.match(/^#\/gift\/([^/?#]+)/)
       const serviceMatch = window.location.hash.match(/^#\/service\/([^/?#]+)/)
+      const collectionMatch = window.location.hash.match(/^#\/collection\/([^/?#]+)/)
       setGiftSlug(giftMatch ? decodeURIComponent(giftMatch[1]) : null)
       setServiceSlug(serviceMatch ? decodeURIComponent(serviceMatch[1]) : null)
-      if (giftMatch || serviceMatch) window.scrollTo(0, 0)
+      setCollectionSlug(collectionMatch ? decodeURIComponent(collectionMatch[1]) : null)
+      if (giftMatch || serviceMatch || collectionMatch) window.scrollTo(0, 0)
     }
 
     window.addEventListener('hashchange', syncRoute)
@@ -169,7 +313,7 @@ function App() {
     })
 
     return () => observer.disconnect()
-  }, [giftSlug, serviceSlug])
+  }, [giftSlug, serviceSlug, collectionSlug])
 
   useEffect(() => {
     const container = document.getElementById('sparkles')
@@ -197,6 +341,7 @@ function App() {
 
   const currentGift = giftIdeaItems.find((item) => item.slug === giftSlug)
   const currentService = giftingCategories.find((item) => item.slug === serviceSlug)
+  const currentCollection = giftCollections.find((item) => item.slug === collectionSlug)
 
   return (
     <div className="page-shell">
@@ -236,7 +381,20 @@ function App() {
           <a href="#contact">Contact us</a>
         </nav>
 
-        <a className="cta-button" href="#contact">Request a Quote</a>
+        {currentCollection ? (
+          <ProductWhatsAppLink className="cta-button" item={currentCollection} request="get a quote for">
+            Request a Quote
+          </ProductWhatsAppLink>
+        ) : (
+          <a
+            className="cta-button"
+            href={whatsappUrl("Hello FromHeart! I'd like a quote for corporate gifting. Please help me with the available options.")}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Request a Quote
+          </a>
+        )}
       </header>
 
       <main>
@@ -257,6 +415,16 @@ function App() {
             <section className="gift-page not-found">
               <p className="eyebrow">Gift ideas</p>
               <h1>We couldn’t find that collection.</h1>
+              <a className="primary-btn" href="#home">Back to home</a>
+            </section>
+          )
+        ) : collectionSlug ? (
+          currentCollection ? (
+            <GiftCollectionPage item={currentCollection} />
+          ) : (
+            <section className="gift-page not-found">
+              <p className="eyebrow">Our work</p>
+              <h1>We couldn’t find that gift.</h1>
               <a className="primary-btn" href="#home">Back to home</a>
             </section>
           )
@@ -313,7 +481,7 @@ function App() {
           </div>
 
           <div className="showcase-panel reveal" aria-label="Featured gifting packages">
-            <div className="product-card featured">
+            <a className="product-card featured" href={`#/collection/${featuredGift.slug}`} aria-label={`View ${featuredGift.title} details`}>
               <span className="product-tag">{featuredGift.tag}</span>
               <img className="featured-gift-image" src={featuredGift.image} alt={featuredGift.alt} />
               <h3>{featuredGift.title}</h3>
@@ -321,7 +489,8 @@ function App() {
                 {featuredGift.items.map((item) => <li key={item}>{item}</li>)}
               </ul>
               <div className="card-price">{featuredGift.price}</div>
-            </div>
+              <span className="product-card-link">View gift details <span aria-hidden="true">→</span></span>
+            </a>
           </div>
 
           <div className="sparkles-container" id="sparkles" />
@@ -359,11 +528,15 @@ function App() {
             </ul>
           </div>
 
-          <div className="feature-visual reveal" aria-label="Gift box showcase">
+          <a
+            className="feature-visual gift-image-link reveal"
+            href={`#/collection/${siteContent.welcomeKitImage.slug}`}
+            aria-label={`View ${siteContent.welcomeKitImage.title} details`}
+          >
             <div className="visual-box">
               <img src={siteContent.welcomeKitImage.src} alt={siteContent.welcomeKitImage.alt} loading="lazy" />
             </div>
-          </div>
+          </a>
         </section>
 
         <section className="gallery-section" id="process">
@@ -388,12 +561,13 @@ function App() {
 
           <div className="portfolio-grid">
             {gallery.map((item) => (
-              <div className={`portfolio-card ${item.tone} reveal`} key={item.label}>
+              <a className={`portfolio-card ${item.tone} reveal`} href={`#/collection/${item.slug}`} key={item.slug}>
                 <div className="portfolio-shape">
                   <img src={item.image} alt={item.alt} loading="lazy" />
                 </div>
                 <p>{item.label}</p>
-              </div>
+                <span className="portfolio-card-link">View details <span aria-hidden="true">→</span></span>
+              </a>
             ))}
           </div>
         </section>
@@ -410,7 +584,24 @@ function App() {
               Share your quantity, budget and occasion. Our team will help you find the right gifts and prepare a custom quote.
             </p>
           </div>
-          <a className="primary-btn" href="#contact">Get a Custom Quote</a>
+          {currentCollection ? (
+            <ProductWhatsAppLink
+              className="primary-btn"
+              item={currentCollection}
+              request="get a custom quote for"
+            >
+              Get a Custom Quote
+            </ProductWhatsAppLink>
+          ) : (
+            <a
+              className="primary-btn"
+              href={whatsappUrl("Hello FromHeart! I'd like a custom gifting quote. Occasion: ___. Quantity: ___. Budget: ___. Delivery timeline: ___.")}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Get a Custom Quote
+            </a>
+          )}
         </div>
         <div className="footer-links">
           <div className="footer-brand">
@@ -432,7 +623,13 @@ function App() {
           <div className="footer-link-group">
             <h3>Get in touch</h3>
             <a href="#contact">Contact us</a>
-            <a href="#contact">Request a quote</a>
+            <a
+              href={whatsappUrl("Hello FromHeart! I'd like a quote for corporate gifting. Please help me with the available options.")}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Request a quote
+            </a>
           </div>
         </div>
         <div className="footer-bottom">

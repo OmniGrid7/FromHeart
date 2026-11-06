@@ -1,7 +1,10 @@
 {
+  "whatsappNumber": "918860539003",
   "featuredGift": {
+    "slug": "exclusive-welcome-gift",
     "tag": "Welcome gift",
     "title": "Exclusive Welcome Gift",
+    "description": "A thoughtful welcome set that brings together branded everyday essentials and custom packaging for a memorable first day.",
     "image": "/exclusive-welcome-gift.png",
     "alt": "Branded team welcome box with a bottle, travel mug, notebook and pen",
     "items": [
@@ -75,8 +78,16 @@
     "Pan-India delivery with quick fulfilment"
   ],
   "welcomeKitImage": {
+    "slug": "welcome-kits",
+    "title": "Welcome Kits",
+    "description": "A coordinated welcome box with useful essentials and personal touches to make every new team member feel at home.",
     "src": "/welcome-kits.png",
-    "alt": "Personalised welcome gift box with drinkware, a notebook, pen and plant"
+    "alt": "Personalised welcome gift box with drinkware, a notebook, pen and plant",
+    "details": [
+      "Drinkware and stationery essentials",
+      "Personalised branding and welcome notes",
+      "Presentation tailored to your team and budget"
+    ]
   },
   "processSteps": [
     {
@@ -103,21 +114,42 @@
   "gallery": [
     {
       "label": "Premium kits",
+      "slug": "premium-kits",
       "image": "/premium-kits.png",
-      "alt": "Premium skincare gift set with gold detailing",
-      "tone": "warm"
+      "alt": "Premium branded tech gadget gift set in a presentation box",
+      "tone": "warm",
+      "description": "A curated selection of premium tech and lifestyle gifts, presented in a keepsake box with your branding and a personal message.",
+      "details": [
+        "Premium tech gadget selections",
+        "Coordinated, gift-ready presentation",
+        "Branding and packaging tailored to your brief"
+      ]
     },
     {
       "label": "Brand-ready sets",
+      "slug": "brand-ready-sets",
       "image": "/brand-ready-sets.png",
       "alt": "Executive stationery gift set in a presentation box",
-      "tone": "cool"
+      "tone": "cool",
+      "description": "An executive stationery set presented in a keepsake box, bringing practical desk essentials together with a considered branded finish.",
+      "details": [
+        "Executive stationery essentials",
+        "Presentation-box packaging",
+        "Logo and message customisation"
+      ]
     },
     {
       "label": "Executive gifting",
+      "slug": "executive-gifting",
       "image": "/executive-gifting.png",
       "alt": "Luxury gift boxes finished with ribbons",
-      "tone": "warm-alt"
+      "tone": "warm-alt",
+      "description": "A premium gifting experience with elegant, ribbon-finished boxes for leadership, client appreciation and special milestones.",
+      "details": [
+        "Curated premium gift selections",
+        "Ribbon-finished presentation",
+        "Personalised branding and message options"
+      ]
     }
   ],
   "giftIdeaGroups": [
