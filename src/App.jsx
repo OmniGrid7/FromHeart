@@ -276,6 +276,8 @@ function App() {
     const match = window.location.hash.match(/^#\/collection\/([^/?#]+)/)
     return match ? decodeURIComponent(match[1]) : null
   })
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileIdeasOpen, setMobileIdeasOpen] = useState(false)
 
   useEffect(() => {
     const syncRoute = () => {
@@ -285,11 +287,33 @@ function App() {
       setGiftSlug(giftMatch ? decodeURIComponent(giftMatch[1]) : null)
       setServiceSlug(serviceMatch ? decodeURIComponent(serviceMatch[1]) : null)
       setCollectionSlug(collectionMatch ? decodeURIComponent(collectionMatch[1]) : null)
+      setMobileMenuOpen(false)
       if (giftMatch || serviceMatch || collectionMatch) window.scrollTo(0, 0)
     }
 
     window.addEventListener('hashchange', syncRoute)
     return () => window.removeEventListener('hashchange', syncRoute)
+  }, [])
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [mobileMenuOpen])
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false)
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
 
   useEffect(() => {
@@ -343,16 +367,29 @@ function App() {
   const currentService = giftingCategories.find((item) => item.slug === serviceSlug)
   const currentCollection = giftCollections.find((item) => item.slug === collectionSlug)
 
+  const handleNavigateHome = () => {
+    setMobileMenuOpen(false)
+    setGiftSlug(null)
+    setServiceSlug(null)
+    setCollectionSlug(null)
+  }
+
   return (
     <div className="page-shell">
       <header className="topbar">
-        <div className="brand-lockup">
+        <a
+          href="#home"
+          className="brand-lockup"
+          onClick={handleNavigateHome}
+          aria-label="FromHeart Home"
+        >
           <HeartLogo />
           <div className="brand-text">FromHeart</div>
-        </div>
+        </a>
 
+        {/* Desktop Navigation */}
         <nav className="main-nav" aria-label="Main navigation">
-          <a href="#home">Home</a>
+          <a href="#home" onClick={handleNavigateHome}>Home</a>
           <details className="nav-dropdown">
             <summary>Gift Ideas <span aria-hidden="true">⌄</span></summary>
             <div className="mega-menu">
@@ -381,21 +418,143 @@ function App() {
           <a href="#contact">Contact us</a>
         </nav>
 
-        {currentCollection ? (
-          <ProductWhatsAppLink className="cta-button" item={currentCollection} request="get a quote for">
-            Request a Quote
-          </ProductWhatsAppLink>
-        ) : (
-          <a
-            className="cta-button"
-            href={whatsappUrl("Hello FromHeart! I'd like a quote for corporate gifting. Please help me with the available options.")}
-            target="_blank"
-            rel="noopener noreferrer"
+        {/* Topbar Actions for Desktop & Mobile */}
+        <div className="topbar-actions">
+          {currentCollection ? (
+            <ProductWhatsAppLink className="cta-button" item={currentCollection} request="get a quote for">
+              Request a Quote
+            </ProductWhatsAppLink>
+          ) : (
+            <a
+              className="cta-button"
+              href={whatsappUrl("Hello FromHeart! I'd like a quote for corporate gifting. Please help me with the available options.")}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Request a Quote
+            </a>
+          )}
+
+          <button
+            type="button"
+            className="mobile-menu-toggle"
+            aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={mobileMenuOpen}
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
           >
-            Request a Quote
-          </a>
-        )}
+            {mobileMenuOpen ? (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            ) : (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <line x1="4" y1="7" x2="20" y2="7" />
+                <line x1="4" y1="12" x2="20" y2="12" />
+                <line x1="4" y1="17" x2="20" y2="17" />
+              </svg>
+            )}
+          </button>
+        </div>
       </header>
+
+      {/* Mobile Navigation Drawer & Backdrop */}
+      <div
+        className={`mobile-drawer-overlay ${mobileMenuOpen ? 'active' : ''}`}
+        onClick={() => setMobileMenuOpen(false)}
+        aria-hidden="true"
+      />
+
+      <div
+        className={`mobile-drawer ${mobileMenuOpen ? 'open' : ''}`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile Navigation"
+      >
+        <div className="mobile-drawer-header">
+          <a
+            href="#home"
+            className="brand-lockup"
+            onClick={handleNavigateHome}
+          >
+            <HeartLogo />
+            <div className="brand-text">FromHeart</div>
+          </a>
+          <button
+            type="button"
+            className="mobile-drawer-close"
+            aria-label="Close menu"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+
+        <div className="mobile-drawer-content">
+          <nav className="mobile-nav-links">
+            <a href="#home" onClick={handleNavigateHome}>
+              Home
+            </a>
+
+            <div className="mobile-accordion">
+              <button
+                type="button"
+                className="mobile-accordion-trigger"
+                aria-expanded={mobileIdeasOpen}
+                onClick={() => setMobileIdeasOpen((prev) => !prev)}
+              >
+                <span>Gift Ideas</span>
+                <span className={`accordion-icon ${mobileIdeasOpen ? 'open' : ''}`} aria-hidden="true">⌄</span>
+              </button>
+
+              {mobileIdeasOpen && (
+                <div className="mobile-accordion-content">
+                  {giftIdeaGroups.map((group) => (
+                    <div className="mobile-category-block" key={group.title}>
+                      <div className="mobile-category-title">{group.title}</div>
+                      <div className="mobile-category-items">
+                        {group.items.map((item) => (
+                          <a
+                            href={`#/gift/${item.slug}`}
+                            key={item.slug}
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            {item.title}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <a href="#solutions" onClick={() => setMobileMenuOpen(false)}>What We Do</a>
+            <a href="#about" onClick={() => setMobileMenuOpen(false)}>Our Specialty</a>
+            <a href="#process" onClick={() => setMobileMenuOpen(false)}>How It Works</a>
+            <a href="#contact" onClick={() => setMobileMenuOpen(false)}>Contact Us</a>
+          </nav>
+
+          <div className="mobile-drawer-footer">
+            <a
+              className="primary-btn mobile-cta-btn"
+              href={whatsappUrl("Hello FromHeart! I'd like a quote for corporate gifting. Please help me with the available options.")}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Request a Quote on WhatsApp
+            </a>
+            <div className="mobile-drawer-contact-info">
+              <p>Premium corporate gifting & welcome kits</p>
+              <p className="mobile-phone-text">Pan-India Delivery • Quick Fulfilment</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <main>
         {serviceSlug ? (
@@ -460,8 +619,17 @@ function App() {
             </p>
 
             <div className="hero-actions">
-              <button className="primary-btn">Get a Custom Catalogue</button>
-              <button className="secondary-btn">View Gift Ideas</button>
+              <a
+                className="primary-btn"
+                href={whatsappUrl("Hello FromHeart! I would like to receive your corporate gifting catalogue. Please share it with me.")}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Get a Custom Catalogue
+              </a>
+              <a className="secondary-btn" href="#solutions">
+                View Gift Ideas
+              </a>
             </div>
 
             <div className="stats-row" aria-label="Business metrics">
@@ -637,6 +805,24 @@ function App() {
           <span>Made with care, from heart to hand.</span>
         </div>
       </footer>
+
+      {/* Floating WhatsApp Action for Mobile */}
+      <a
+        className="mobile-floating-whatsapp"
+        href={whatsappUrl(
+          currentCollection
+            ? productMessage(currentCollection, "get a quote for")
+            : "Hello FromHeart! I would like to enquire about corporate gifting options."
+        )}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat with FromHeart on WhatsApp"
+      >
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+          <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 16.67c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.217 8.217 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c.02 4.54-3.68 8.23-8.22 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.84-.86 2.05s.88 2.38 1 2.55c.12.17 1.74 2.65 4.21 3.72.59.25 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.12-.23-.19-.48-.31z" />
+        </svg>
+        <span className="floating-text">Chat with us</span>
+      </a>
     </div>
   )
 }
