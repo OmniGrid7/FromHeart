@@ -19,10 +19,26 @@
       "title": "Welcome Kits",
       "slug": "welcome-kits",
       "description": "Thoughtful onboarding gifting for new hires, clients and partners with premium packaging and tailored choices.",
+      "image": "/new-joiner-welcome-boxes.jpg",
       "offerings": [
-        "New-joiner welcome boxes",
-        "Branded notebooks and drinkware",
-        "Custom packaging and welcome notes"
+        {
+          "title": "New-joiner welcome boxes",
+          "image": "/new-joiner-welcome-boxes.jpg",
+          "alt": "Custom branded new-joiner welcome box with diary, bottle, pen and tote bag",
+          "description": "Complete curated boxes with company stationery, drinkware, and personal welcome keepsakes."
+        },
+        {
+          "title": "Branded notebooks and drinkware",
+          "image": "/branded-notebooks-drinkware.png",
+          "alt": "Aurora Dynamics custom branded notebook and matte black drinkware bottle",
+          "description": "Matching hardbound notebook and temperature-retaining bottle customized with your brand logo and finish."
+        },
+        {
+          "title": "Custom packaging and welcome notes",
+          "image": "/custom-packaging-welcome-notes.jpg",
+          "alt": "Luminary Media welcome kit with personalised welcome greeting note and pen",
+          "description": "Tailored unboxing experience featuring custom-cut inserts, personalized welcome letters, and foil-stamped lids."
+        }
       ],
       "icon": "🎁"
     },
@@ -30,10 +46,26 @@
       "title": "Custom Branding",
       "slug": "custom-branding",
       "description": "Logo engraving, printing, embossing and packaging that makes every gift feel premium and personal.",
+      "image": "/branded-ribbons-sleeves-boxes.png",
       "offerings": [
-        "Logo printing and engraving",
-        "Branded ribbons, sleeves and boxes",
-        "Custom inserts and personal notes"
+        {
+          "title": "Logo printing and engraving",
+          "image": "/logo-printing-engraving.png",
+          "alt": "Laser engraved leather notebook, engraved tumbler, metal pen, and precision printed tech accessories",
+          "description": "Precision laser engraving, screen printing, and UV printing on metals, leather, glass, and tech."
+        },
+        {
+          "title": "Branded ribbons, sleeves and boxes",
+          "image": "/branded-ribbons-sleeves-boxes.png",
+          "alt": "Custom branded gift boxes with foil stamping, branded packaging sleeves, and custom woven ribbons",
+          "description": "Foil-stamped rigid gift boxes, bespoke printed packaging sleeves, and custom-woven branded ribbons."
+        },
+        {
+          "title": "Custom inserts and personal notes",
+          "image": "/custom-inserts-personal-notes.jpg",
+          "alt": "Personalized team welcome gift box with personalized name printing and custom printed note card",
+          "description": "Personalized employee welcome cards, custom-molded foam inserts, and individual recipient name printing."
+        }
       ],
       "icon": "✦"
     },
@@ -41,10 +73,26 @@
       "title": "Corporate Events",
       "slug": "corporate-events",
       "description": "Memorable giveaways and curated merchandise for launches, conferences, festivals and milestones.",
+      "image": "/conference-launch-giveaways.png",
       "offerings": [
-        "Conference and launch giveaways",
-        "Branded event merchandise",
-        "Curated gifts for company milestones"
+        {
+          "title": "Conference and launch giveaways",
+          "image": "/conference-launch-giveaways.png",
+          "alt": "Global innovation future forum premium welcome and launch giveaway kit in presentation box",
+          "description": "High-impact launch sets and welcome giveaways designed for conferences, summit attendees, and product launches."
+        },
+        {
+          "title": "Branded event merchandise",
+          "image": "/branded-event-merchandise.png",
+          "alt": "Annual summit branded merchandise kit with notebook, bottle, earbuds case, lanyard, and exhibitor badge",
+          "description": "Coordinated event merchandise including summit notebooks, drinkware, tech gear, badges, and lanyards."
+        },
+        {
+          "title": "Curated gifts for company milestones",
+          "image": "/curated-milestone-gifts.jpg",
+          "alt": "Company milestone gala honoring 10 years with commemorative medals, leather folio, bottle, and pouch",
+          "description": "Commemorative gala gifts, anniversary medals, customized leather folios, and honorific keepsakes."
+        }
       ],
       "icon": "📦"
     },
@@ -52,10 +100,26 @@
       "title": "Executive Gifts",
       "slug": "executive-gifts",
       "description": "High-impact, practical gifting for leadership moments, stakeholder appreciation and year-end celebrations.",
+      "image": "/premium-leadership-gift-sets.png",
       "offerings": [
-        "Premium leadership gift sets",
-        "Client and stakeholder appreciation",
-        "Thoughtful year-end gifts"
+        {
+          "title": "Premium leadership gift sets",
+          "image": "/premium-leadership-gift-sets.png",
+          "alt": "Executive valet tray with luxury pen, gold desk sculpture, leather coaster, and business card case",
+          "description": "Distinguished desk accessories, luxury pens, bespoke brass sculptures, and leather desk valets for leaders."
+        },
+        {
+          "title": "Client and stakeholder appreciation",
+          "image": "/client-stakeholder-appreciation.jpg",
+          "alt": "Executive client appreciation gift set with leather organizer, valet pen tray, and etched crystal glassware",
+          "description": "Refined executive portfolios, leather catchalls, engraved writing instruments, and crystal glassware."
+        },
+        {
+          "title": "Thoughtful year-end gifts",
+          "image": "/thoughtful-year-end-gifts.jpg",
+          "alt": "Thoughtful executive year-end gift hamper with leather journals, thermos bottle, tumbler, and desk plant",
+          "description": "Warm, celebratory hampers featuring personalized leather goods, insulated drinkware, desk greens, and personal letters."
+        }
       ],
       "icon": "💼"
     },
@@ -63,10 +127,26 @@
       "title": "University Events",
       "slug": "university-events",
       "description": "Branded gifting for conferences, startup conclaves, TEDx, alumni connects, fresher parties and convocation ceremonies.",
+      "image": "/startup-conclave-kits.png",
       "offerings": [
-        "Conference and startup conclave kits",
-        "TEDx, alumni connect and fresher party gifts",
-        "Convocation keepsakes and branded merchandise"
+        {
+          "title": "Conference and startup conclave kits",
+          "image": "/startup-conclave-kits.png",
+          "alt": "University startup conclave delegate kit with canvas tote bag, leather notebook, badge, and steel bottle",
+          "description": "Premium delegate totes, branded leather notebooks, attendee badges, and steel bottles for conclaves and summits."
+        },
+        {
+          "title": "TEDx, alumni connect and fresher party gifts",
+          "image": "/tedx-alumni-connect-gifts.jpg",
+          "alt": "TEDx University event branded matte black bottle, debossed journal, and pen set",
+          "description": "Sleek matte merchandise kits with debossed journals, metal pens, and drinkware for TEDx and alumni meets."
+        },
+        {
+          "title": "Convocation keepsakes and branded merchandise",
+          "image": "/convocation-keepsakes-merchandise.jpg",
+          "alt": "University of Oxford convocation certificate leather folder, gold excellence medal, and alumni pen",
+          "description": "Gold convocation medals, leather certificate holders, and commemorative alumni pens for graduation ceremonies."
+        }
       ],
       "icon": "🎓"
     }
@@ -236,7 +316,23 @@
           "title": "Welcome Kits",
           "slug": "welcome-kits",
           "description": "Make day one feel special with a coordinated kit of useful essentials and personal touches.",
-          "ideas": ["New-hire essentials", "Branded stationery kits", "Curated onboarding boxes"]
+          "ideas": [
+            {
+              "name": "New-hire essentials",
+              "image": "/new-joiner-welcome-boxes.jpg",
+              "alt": "Custom branded new-joiner welcome box with diary, bottle, pen and tote bag"
+            },
+            {
+              "name": "Branded stationery kits",
+              "image": "/branded-notebooks-drinkware.png",
+              "alt": "Aurora Dynamics custom branded notebook and matte black drinkware bottle"
+            },
+            {
+              "name": "Curated onboarding boxes",
+              "image": "/custom-packaging-welcome-notes.jpg",
+              "alt": "Luminary Media welcome kit with personalised welcome greeting note and pen"
+            }
+          ]
         },
         {
           "title": "Mouse Pads",

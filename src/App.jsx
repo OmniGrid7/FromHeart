@@ -101,23 +101,34 @@ function GiftIdeaPage({ item }) {
           </p>
         </div>
         <div className="gift-ideas-grid">
-          {item.ideas.map((idea, index) => (
-            <article className="gift-idea-card" key={idea}>
-              <span className="gift-idea-number">0{index + 1}</span>
-              <div className="gift-idea-art" aria-hidden="true">
-                <span>{item.title.charAt(0)}</span>
-              </div>
-              <h3>{idea}</h3>
-              <p>Customisable with your logo and presented to suit your brand.</p>
-              <a
-                href={whatsappUrl(`Hello FromHeart! I'd like to know more about ${idea} for ${item.title}. Please share the options and pricing.`)}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Ask us about this <span aria-hidden="true">→</span>
-              </a>
-            </article>
-          ))}
+          {item.ideas.map((idea, index) => {
+            const isObject = typeof idea === 'object' && idea !== null
+            const title = isObject ? idea.name || idea.title : idea
+            const image = isObject ? idea.image : null
+            const alt = isObject ? idea.alt || title : title
+
+            return (
+              <article className="gift-idea-card" key={title}>
+                <span className="gift-idea-number">0{index + 1}</span>
+                <div className={`gift-idea-art ${image ? 'has-image' : ''}`} aria-hidden={image ? undefined : 'true'}>
+                  {image ? (
+                    <img src={image} alt={alt} loading="lazy" />
+                  ) : (
+                    <span>{item.title.charAt(0)}</span>
+                  )}
+                </div>
+                <h3>{title}</h3>
+                <p>Customisable with your logo and presented to suit your brand.</p>
+                <a
+                  href={whatsappUrl(`Hello FromHeart! I'd like to know more about ${title} for ${item.title}. Please share the options and pricing.`)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Ask us about this <span aria-hidden="true">→</span>
+                </a>
+              </article>
+            )
+          })}
         </div>
       </div>
 
@@ -234,13 +245,34 @@ function ServicePage({ service }) {
           </p>
         </div>
         <div className="service-offerings">
-          {service.offerings.map((offering, index) => (
-            <article className="service-offering reveal" key={offering}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <h3>{offering}</h3>
-              <p>Personalised to your brand, audience and budget.</p>
-            </article>
-          ))}
+          {service.offerings.map((offering, index) => {
+            const isObject = typeof offering === 'object' && offering !== null
+            const title = isObject ? offering.title : offering
+            const description = isObject ? offering.description : 'Personalised to your brand, audience and budget.'
+            const image = isObject ? offering.image : null
+            const alt = isObject ? offering.alt || title : title
+
+            return (
+              <article className="service-offering reveal" key={title}>
+                {image && (
+                  <div className="service-offering-image-wrap">
+                    <img src={image} alt={alt} loading="lazy" />
+                  </div>
+                )}
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <h3>{title}</h3>
+                <p>{description}</p>
+                <a
+                  className="service-offering-link"
+                  href={whatsappUrl(`Hello FromHeart! I'd like to know more about ${title} for ${service.title}. Please share the options and pricing.`)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Ask us about this <span aria-hidden="true">→</span>
+                </a>
+              </article>
+            )
+          })}
         </div>
       </div>
 
@@ -673,7 +705,13 @@ function App() {
           <div className="cards-grid">
             {giftingCategories.map((item) => (
               <a className="info-card reveal" href={`#/service/${item.slug}`} key={item.slug}>
-                <div className="icon-wrap">{item.icon}</div>
+                {item.image ? (
+                  <div className="info-card-image-wrap">
+                    <img src={item.image} alt={item.title} loading="lazy" />
+                  </div>
+                ) : (
+                  <div className="icon-wrap">{item.icon}</div>
+                )}
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
                 <span className="info-card-link">Explore {item.title} <span aria-hidden="true">→</span></span>

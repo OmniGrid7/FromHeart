@@ -662,6 +662,23 @@ svg {
   font-weight: 600;
 }
 
+.gift-idea-art.has-image {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--line);
+}
+
+.gift-idea-art.has-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.gift-idea-card:hover .gift-idea-art.has-image img {
+  transform: scale(1.05);
+}
+
 .gift-idea-card h3 {
   margin: 20px 0 8px;
   font-size: 1.3rem;
@@ -1165,28 +1182,78 @@ svg {
 }
 
 .info-card {
-  display: block;
-  padding: 28px 22px;
+  position: relative;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 22px 20px;
   border-radius: var(--radius-lg);
   background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
   border: 1px solid var(--line);
   color: var(--text);
   text-decoration: none;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .info-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 18px 34px rgba(9, 17, 53, 0.3);
+  box-shadow: 0 18px 34px rgba(9, 17, 53, 0.35);
+  border-color: rgba(240, 93, 103, 0.35);
+}
+
+.info-card-image-wrap {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 18px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--line);
+}
+
+.info-card-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.info-card:hover .info-card-image-wrap img {
+  transform: scale(1.05);
+}
+
+.info-card-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  background: rgba(9, 17, 53, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 1.15rem;
 }
 
 .info-card-link {
   display: inline-flex;
   gap: 8px;
-  margin-top: 18px;
+  margin-top: auto;
+  padding-top: 16px;
   color: var(--brand-soft);
   font-size: 0.88rem;
   font-weight: 700;
+  transition: gap 0.2s ease, color 0.2s ease;
+}
+
+.info-card:hover .info-card-link {
+  gap: 12px;
+  color: #fff;
 }
 
 .icon-wrap {
@@ -1202,14 +1269,14 @@ svg {
 }
 
 .info-card h3 {
-  margin: 0 0 12px;
-  font-size: 1.4rem;
+  margin: 0 0 10px;
+  font-size: 1.35rem;
 }
 
 .info-card p {
   margin: 0;
   color: var(--muted);
-  line-height: 1.7;
+  line-height: 1.65;
 }
 
 .feature-band {
@@ -1467,37 +1534,85 @@ svg {
 .service-offerings {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+  gap: 22px;
 }
 
 .service-offering {
-  padding: 24px;
+  position: relative;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   background: var(--panel);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .service-offering:hover {
   transform: translateY(-4px);
-  box-shadow: 0 18px 34px rgba(9, 17, 53, 0.3);
+  box-shadow: 0 18px 34px rgba(9, 17, 53, 0.35);
+  border-color: rgba(240, 93, 103, 0.35);
+}
+
+.service-offering-image-wrap {
+  width: 100%;
+  height: 210px;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 18px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--line);
+}
+
+.service-offering-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.service-offering:hover .service-offering-image-wrap img {
+  transform: scale(1.05);
 }
 
 .service-offering > span {
   color: var(--brand-soft);
   font-size: 0.82rem;
   font-weight: 800;
+  letter-spacing: 0.05em;
 }
 
 .service-offering h3 {
-  margin: 14px 0 8px;
-  font-size: 1.15rem;
+  margin: 10px 0 8px;
+  font-size: 1.25rem;
+  line-height: 1.35;
 }
 
 .service-offering p {
   margin: 0;
   color: var(--muted);
   line-height: 1.65;
+  font-size: 0.95rem;
+}
+
+.service-offering-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 18px;
+  color: var(--brand-soft);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: gap 0.2s ease, color 0.2s ease;
+}
+
+.service-offering-link:hover {
+  gap: 12px;
+  color: #fff;
 }
 
 .hero .secondary-btn {
