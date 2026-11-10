@@ -343,6 +343,41 @@
       ]
     },
     {
+      "title": "University Events",
+      "items": [
+        {
+          "title": "Conferences",
+          "slug": "university-conferences",
+          "description": "Welcome attendees with coordinated campus conference gifts, badges and useful event essentials.",
+          "ideas": ["Delegate welcome kits", "Branded attendee badges", "Conference notebooks and drinkware"]
+        },
+        {
+          "title": "Startup Conclave",
+          "slug": "startup-conclave",
+          "description": "Bring a fresh, polished feel to startup conclaves with practical kits for speakers, founders and attendees.",
+          "ideas": ["Canvas delegate totes", "Branded journals and pens", "Reusable steel bottles"]
+        },
+        {
+          "title": "TEDx",
+          "slug": "tedx-events",
+          "description": "Create a memorable TEDx experience with sleek, coordinated merchandise for speakers and guests.",
+          "ideas": ["Debossed journals", "Branded drinkware", "Speaker and attendee gift sets"]
+        },
+        {
+          "title": "Alumni Connect",
+          "slug": "alumni-connect",
+          "description": "Celebrate lifelong campus connections with thoughtful keepsakes and branded gifts for alumni gatherings.",
+          "ideas": ["Alumni welcome gifts", "Commemorative notebooks", "Custom event merchandise"]
+        },
+        {
+          "title": "Convocation",
+          "slug": "convocation",
+          "description": "Mark graduation day with lasting keepsakes for students, faculty and families.",
+          "ideas": ["Certificate folders", "Commemorative medals", "Graduation gift sets"]
+        }
+      ]
+    },
+    {
       "title": "Sustainable Gifts",
       "items": [
         {
